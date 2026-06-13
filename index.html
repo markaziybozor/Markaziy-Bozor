@@ -51,7 +51,7 @@ header{
     border-radius:10px;
 }
 
-/* GRID */
+/* PRODUCTS */
 .container{
     display:grid;
     grid-template-columns:repeat(auto-fill,170px);
@@ -60,7 +60,6 @@ header{
     padding:15px;
 }
 
-/* CARD */
 .card{
     width:170px;
     background:white;
@@ -79,106 +78,133 @@ header{
 
 .info{
     padding:10px;
-    display:flex;
-    flex-direction:column;
-    flex:1;
 }
 
 .price{
     font-weight:bold;
     color:green;
-    margin-top:5px;
 }
 
 .btn{
     margin-top:6px;
-    padding:5px;
+    padding:6px;
+    width:100%;
     border:none;
-    border-radius:6px;
-    cursor:pointer;
     background:#1b5e20;
     color:white;
+    border-radius:6px;
+    cursor:pointer;
 }
 
-/* CART */
-#cartBox{
+/* CART BUTTON */
+.cart-btn{
     position:fixed;
-    right:10px;
-    top:120px;
-    width:260px;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#fff4d6;
+    color:#1b5e20;
+    font-size:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:999;
+}
+
+/* MODAL */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.modal{
     background:white;
-    padding:10px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
+    width:90%;
+    max-width:400px;
+    border-radius:12px;
+    padding:15px;
+}
+
+.close{
+    float:right;
+    cursor:pointer;
+    font-size:20px;
 }
 
 .cart-item{
     display:flex;
     justify-content:space-between;
-    font-size:14px;
-    margin:4px 0;
-}
-
-.small-btn{
-    padding:2px 6px;
-    border:none;
-    background:red;
-    color:white;
-    border-radius:4px;
-    cursor:pointer;
-}
-
-input, select, textarea{
-    width:100%;
-    padding:6px;
-    margin-top:5px;
-    border:1px solid #ccc;
-    border-radius:6px;
-}
-
-.checkout{
-    margin-top:10px;
-    padding:10px;
-    background:black;
-    color:white;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
+    margin:5px 0;
 }
 
 .total{
-    margin-top:8px;
+    margin-top:10px;
     font-weight:bold;
 }
 
+input,textarea,select{
+    width:100%;
+    margin-top:6px;
+    padding:8px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.send{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    background:#1b5e20;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.warning{
+    font-size:15px;
+    color:red;
+    margin-top:8px;
+}
+
 /* FLOAT BUTTONS */
-.float-btn{
+.float-contact{
     position:fixed;
-    width:55px;
-    height:55px;
+    bottom:20px;
+    left:20px;
+    width:60px;
+    height:60px;
     border-radius:50%;
+    background:#fff4d6;
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
+    font-size:22px;
     z-index:999;
-    box-shadow:0 5px 15px rgba(0,0,0,.3);
-    background:#fff4d6;
-}
-
-.call{
-    bottom:20px;
-    left:20px;
-    font-size:24px;
 }
 
 .telegram{
-    bottom:20px;
-    right:20px;
+    left:auto;
+    right:90px;
+    background:#    border-radius:6px;
+;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
 
 .telegram svg{
-    fill:black;
+    fill:rgb(0, 0, 0);
 }
 
 </style>
@@ -189,7 +215,7 @@ input, select, textarea{
 <header>
 
 <div class="location">
-📍 Namangan viloyati, To‘raqo‘rg‘on tumani, Markaziy dehqon bozori (mo‘ljal: markaziy yo‘l yonida)
+Namangan viloyati, To‘raqo‘rg‘on tumani, Markaziy dehqon bozori
 </div>
 
 <input id="search" placeholder="🔍 Qidirish...">
@@ -219,47 +245,49 @@ input, select, textarea{
 
 </div>
 
-<!-- CART -->
-<div id="cartBox">
+<!-- CART BUTTON -->
+<div class="cart-btn" onclick="openCart()">🛒</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+<div class="modal">
+
+<span class="close" onclick="closeCart()">✖</span>
 
 <h3>🛒 Savat</h3>
-
 <div id="cart"></div>
-
 <div class="total" id="total">Jami: 0 so‘m</div>
 
 <hr>
 
 <input id="name" placeholder="Ism">
 <input id="phone" placeholder="Telefon">
-<textarea id="address" placeholder="Mo‘ljal (uy, do‘kon, ko‘cha)"></textarea>
+<textarea id="address" placeholder="Mo‘ljal"></textarea>
 
 <select id="delivery">
 <option>Yetkazish</option>
 <option>Olib ketish</option>
 </select>
 
-<div style="margin-top:10px;">
-💳 QR to‘lov
-<img src="qr.png" style="width:100%; margin-top:5px;">
-<p>Karta: 8600 xxxx xxxx xxxx</p>
-</div>
-
-<p style="font-size:12px;color:red;margin-top:5px;">
-⚠ To‘lov oldindan. 10% xizmat haqqi. Yetkazish taxi orqali, yo‘l haqqi mijoz hisobidan.
+<p class="warning">
+⚠ To‘lov oldindan. 10% xizmat haqqi. Mahsulot online taksi orqali yetkazib beriladi, yo'l haqqi mijoz tomonidan qoplanadi..
 </p>
 
-<button class="checkout" onclick="send()">YUBORISH</button>
+<button class="send" onclick="send()">YUBORISH</button>
 
 </div>
+</div>
 
-<!-- BUTTONS -->
-<a href="tel:+998998634115" class="float-btn call">📞</a>
+<!-- CALL -->
+<a href="tel:+998998634115" class="float-contact">📞</a>
 
-<a href="https://t.me/TMarkaziy_Bozor" class="float-btn telegram" target="_blank">
-<svg width="26" height="26" viewBox="0 0 24 24">
+<!-- TELEGRAM SVG -->
+<a href="https://t.me/TMarkaziy_Bozor" target="_blank" class="float-contact telegram">
+
+<svg width="28" height="28" viewBox="0 0 24 24">
 <path d="M9.04 15.47L8.9 19.2c.4 0 .58-.18.8-.4l1.9-1.8 3.94 2.9c.72.4 1.23.2 1.42-.67l2.6-12.2c.27-1.24-.45-1.73-1.13-1.48L3.4 9.3c-1.2.47-1.18 1.15-.2 1.45l4.6 1.43L18.5 7.3c.52-.32.99-.14.6.2"/>
 </svg>
+
 </a>
 
 <script>
@@ -279,11 +307,6 @@ cart.push({name,price,qty:1});
 render();
 }
 
-function removeItem(name){
-cart=cart.filter(i=>i.name!==name);
-render();
-}
-
 function render(){
 
 let box=document.getElementById("cart");
@@ -297,12 +320,19 @@ total+=i.price*i.qty;
 box.innerHTML+=`
 <div class="cart-item">
 <span>${i.name} x${i.qty}</span>
-<button class="small-btn" onclick="removeItem('${i.name}')">x</button>
 </div>
 `;
 });
 
 document.getElementById("total").innerText="Jami: "+total.toLocaleString()+" so‘m";
+}
+
+function openCart(){
+document.getElementById("overlay").style.display="flex";
+}
+
+function closeCart(){
+document.getElementById("overlay").style.display="none";
 }
 
 function send(){
@@ -312,15 +342,12 @@ let phone=document.getElementById("phone").value;
 let address=document.getElementById("address").value;
 let delivery=document.getElementById("delivery").value;
 
-let items=cart.map(i=>i.name+" x"+i.qty).join(", ");
-
 let msg=`🛒 Buyurtma:
 Ism: ${name}
 Tel: ${phone}
 Mo‘ljal: ${address}
 Yetkazish: ${delivery}
-Mahsulotlar: ${items}
-Jami: ${document.getElementById("total").innerText}`;
+Mahsulotlar: ${cart.map(i=>i.name+" x"+i.qty).join(", ")}`;
 
 window.open("https://t.me/TMarkaziy_Bozor?text="+encodeURIComponent(msg));
 
