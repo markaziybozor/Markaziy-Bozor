@@ -3,390 +3,603 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mini Magazin</title>
-
+<title>Markaziy Bozor — To'raqo'rg'on</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-/* SENING STYLE (HECH O‘ZGARMAGAN) */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root{
+  --g1:#0f4c2a;
+  --g2:#1b6e3e;
+  --g3:#2d9253;
+  --gold:#e6a817;
+  --gold-bg:#fff8e1;
+  --cream:#f7f5f0;
+  --text:#1a2e1e;
+  --muted:#5a7060;
+  --r:16px;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background-image:url("background.jpg");
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
+  font-family:'Nunito',Arial,sans-serif;
+  background:#f7f5f0;
+  color:var(--text);
+  min-height:100vh;
 }
 
+/* BG */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background:url('background.jpg') center/cover fixed;
+  opacity:.18;
+  pointer-events:none;
+}
+
+.wrap{position:relative;z-index:1;}
+
+/* ── HEADER ── */
 header{
-    background:white;
-    text-align:center;
-    padding:15px 10px;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+  background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 3px 20px rgba(15,76,42,.35);
 }
 
-.location{
-    background:#fff4d6;
-    color:#1b5e20;
-    font-weight:600;
-    font-size:15px;
-    padding:10px;
-    border-radius:10px;
-    max-width:700px;
-    margin:0 auto 10px auto;
+.hinner{
+  max-width:960px;margin:0 auto;
+  padding:12px 16px;
+  display:flex;flex-direction:column;gap:10px;
 }
 
-#search{
-    width:95%;
-    max-width:500px;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:10px;
+.htop{
+  display:flex;align-items:center;
+  justify-content:space-between;gap:10px;
 }
 
+/* BRAND */
+.brand{display:flex;align-items:center;gap:10px;}
+
+.brand-icon{
+  width:40px;height:40px;
+  background:var(--gold);
+  border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+
+.brand h1{font-size:16px;font-weight:900;color:#fff;line-height:1.1;}
+.brand p {font-size:10px;color:rgba(255,255,255,.7);font-weight:600;margin-top:1px;}
+
+/* HEADER ACTIONS */
+.hactions{display:flex;align-items:center;gap:8px;}
+
+.hbtn{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.22);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;cursor:pointer;
+  text-decoration:none;color:inherit;
+  position:relative;
+  transition:background .18s;
+  flex-shrink:0;
+}
+.hbtn:hover{background:rgba(255,255,255,.28);}
+.hbtn svg{fill:#fff;width:20px;height:20px;}
+
+.cart-badge{
+  position:absolute;top:-5px;right:-5px;
+  background:var(--gold);color:var(--g1);
+  font-size:10px;font-weight:900;
+  border-radius:50%;width:18px;height:18px;
+  display:none;align-items:center;justify-content:center;
+  border:2px solid var(--g2);
+}
+
+/* SEARCH */
+.sbox{position:relative;}
+.sbox input{
+  width:100%;padding:10px 14px 10px 40px;
+  border-radius:11px;border:none;
+  background:rgba(255,255,255,.18);
+  color:#fff;font-family:inherit;font-size:14px;font-weight:600;
+  outline:none;transition:background .2s;
+}
+.sbox input::placeholder{color:rgba(255,255,255,.58);}
+.sbox input:focus{background:rgba(255,255,255,.28);}
+.sicon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;}
+
+/* LOCATION */
+.locbar{
+  background:var(--gold-bg);
+  border-bottom:1px solid rgba(230,168,23,.28);
+  padding:7px 16px;
+  font-size:12px;font-weight:700;color:var(--g1);
+  display:flex;align-items:center;gap:6px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:12px 16px;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  font-size:12px;font-weight:700;color:var(--g1);
+}
+.hero span{color:var(--gold);}
+
+/* SECTION HEAD */
+.sec-head{
+  max-width:960px;margin:18px auto 0;
+  padding:0 16px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-head h2{font-size:15px;font-weight:900;white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:rgba(15,76,42,.12);}
+.sec-pill{
+  background:var(--g1);color:#fff;
+  font-size:11px;font-weight:800;
+  padding:3px 9px;border-radius:20px;
+}
+
+/* ── GRID ── */
 .container{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,170px);
-    justify-content:center;
-    gap:15px;
-    padding:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+  gap:14px;
+  padding:14px 16px 40px;
+  max-width:960px;margin:0 auto;
 }
 
+/* ── CARD ── */
 .card{
-    width:170px;
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-    display:flex;
-    flex-direction:column;
+  background:#fff;
+  border-radius:var(--r);
+  overflow:hidden;
+  border:1px solid rgba(15,76,42,.08);
+  box-shadow:0 2px 12px rgba(15,76,42,.09);
+  display:flex;flex-direction:column;
+  transition:transform .22s,box-shadow .22s;
 }
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(15,76,42,.16);}
 
-.card img{
-    width:100%;
-    height:170px;
-    object-fit:cover;
+/* FIXED IMAGE — always same size, never distorts */
+.card-img{
+  width:100%;
+  height:160px;
+  overflow:hidden;
+  flex-shrink:0;
+  background:#e8f5e9;
+  position:relative;
 }
+.card-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transition:transform .35s;
+}
+.card:hover .card-img img{transform:scale(1.05);}
 
-.info{
-    padding:10px;
-}
+.card-body{padding:11px 12px 13px;display:flex;flex-direction:column;flex:1;}
+.card-body h3{font-size:14px;font-weight:800;margin-bottom:4px;line-height:1.25;}
 
-.price{
-    font-weight:bold;
-    color:green;
-}
+.price-row{display:flex;align-items:baseline;gap:3px;margin-bottom:10px;}
+.price{font-size:15px;font-weight:900;color:var(--g2);}
+.punit{font-size:11px;font-weight:700;color:var(--muted);}
+
+/* BUTTON */
+.bwrap{position:relative;margin-top:auto;}
 
 .btn{
-    margin-top:6px;
-    padding:6px;
-    width:100%;
-    border:none;
-    background:#1b5e20;
-    color:white;
-    border-radius:6px;
-    cursor:pointer;
+  width:100%;padding:9px;
+  border:none;background:var(--g1);color:#fff;
+  border-radius:10px;
+  font-family:inherit;font-size:13px;font-weight:800;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  transition:background .18s,transform .14s;
+}
+.btn:hover{background:var(--g3);}
+.btn:active{transform:scale(.96);}
+.btn.added{background:var(--g3);}
+
+.cbadge{
+  position:absolute;top:-8px;right:-6px;
+  background:var(--gold);color:var(--g1);
+  font-size:10px;font-weight:900;
+  border-radius:50%;width:20px;height:20px;
+  display:none;align-items:center;justify-content:center;
+  border:2px solid #fff;
 }
 
-.cart-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:#ffffff;
-    color:#000000;
-    font-size:24px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    z-index:999;
-}
+.fb{font-size:11px;font-weight:700;color:var(--g3);text-align:center;height:14px;margin-top:4px;}
 
+.no-results{grid-column:1/-1;text-align:center;padding:50px;color:var(--muted);font-weight:700;}
+
+/* FOOTER */
+.foot{text-align:center;padding:16px;font-size:11px;font-weight:700;color:var(--muted);}
+
+/* ── OVERLAY ── */
 .overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.6);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
+  position:fixed;inset:0;
+  background:rgba(8,24,12,.55);
+  display:none;justify-content:center;align-items:flex-end;
+  z-index:500;
 }
 
 .modal{
-    background:white;
-    width:90%;
-    max-width:400px;
-    border-radius:12px;
-    padding:15px;
+  background:#fff;width:100%;max-width:480px;
+  border-radius:22px 22px 0 0;
+  max-height:92vh;overflow-y:auto;
+  animation:sup .26s cubic-bezier(.34,1.5,.64,1);
+}
+@media(min-width:520px){
+  .overlay{align-items:center;}
+  .modal{border-radius:22px;max-height:88vh;}
+}
+@keyframes sup{from{transform:translateY(48px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+.mhead{
+  background:linear-gradient(135deg,var(--g1),var(--g3));
+  padding:16px 18px;border-radius:22px 22px 0 0;
+  display:flex;align-items:center;justify-content:space-between;
+}
+@media(min-width:520px){.mhead{border-radius:22px 22px 0 0;}}
+.mhead h3{color:#fff;font-size:16px;font-weight:900;}
+.mclose{
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,.2);border:none;
+  color:#fff;font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.mclose:hover{background:rgba(255,255,255,.35);}
+
+.mbody{padding:16px 18px 22px;}
+
+.empty{text-align:center;padding:32px;color:#bbb;font-weight:700;}
+
+.ci{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 0;border-bottom:1px solid #f0f0f0;
+}
+.ci-name{flex:1;font-size:13px;font-weight:700;}
+.ci-sub{font-size:11px;color:#aaa;font-weight:600;}
+.ci-price{font-size:13px;font-weight:900;color:var(--g2);white-space:nowrap;}
+.qctrl{display:flex;align-items:center;gap:4px;}
+.qb{
+  width:27px;height:27px;border:1.5px solid #ddd;background:#fff;
+  border-radius:7px;font-size:15px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-family:inherit;
+}
+.qb:hover{background:#f5f5f5;}
+.qn{min-width:20px;text-align:center;font-weight:900;font-size:13px;}
+.delbtn{background:none;border:none;color:#e53935;font-size:17px;cursor:pointer;}
+
+.total-box{
+  display:flex;justify-content:space-between;align-items:center;
+  margin:12px 0 4px;padding:11px 14px;
+  background:var(--gold-bg);border:1px solid rgba(230,168,23,.3);
+  border-radius:11px;
+}
+.tlabel{font-size:13px;font-weight:700;color:var(--muted);}
+.tval{font-size:19px;font-weight:900;color:var(--g1);}
+
+.fsep{display:flex;align-items:center;gap:8px;margin:14px 0 10px;}
+.fsep span{font-size:12px;font-weight:800;color:var(--muted);white-space:nowrap;}
+.fsep hr{flex:1;border:none;border-top:1px solid #eee;}
+
+.field{margin-bottom:9px;}
+.field label{display:block;font-size:11px;font-weight:800;color:var(--muted);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;}
+.field input,.field textarea,.field select{
+  width:100%;padding:10px 13px;
+  border-radius:10px;border:1.5px solid #e5e5e5;
+  font-family:inherit;font-size:14px;font-weight:600;
+  color:var(--text);background:#fafafa;outline:none;
+  transition:border-color .2s,background .2s;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--g2);background:#fff;}
+.field input.err{border-color:#e53935;}
+.errmsg{font-size:11px;font-weight:700;color:#e53935;margin-top:2px;display:none;}
+
+.warnbox{
+  background:#fff8e1;border:1px solid #ffe082;
+  border-radius:9px;padding:9px 13px;
+  font-size:12px;font-weight:700;color:#7c5a00;line-height:1.6;margin-top:8px;
 }
 
-.close{
-    float:right;
-    cursor:pointer;
-    font-size:20px;
+.sendbtn{
+  width:100%;margin-top:13px;padding:13px;
+  background:linear-gradient(135deg,var(--g1),var(--g3));
+  color:#fff;border:none;border-radius:13px;
+  font-family:inherit;font-size:15px;font-weight:900;
+  cursor:pointer;letter-spacing:.2px;
+  box-shadow:0 4px 16px rgba(15,76,42,.28);
+  transition:opacity .2s,transform .14s;
 }
+.sendbtn:hover{opacity:.9;}
+.sendbtn:active{transform:scale(.98);}
+.sendbtn:disabled{background:#ccc;box-shadow:none;cursor:not-allowed;}
 
-.cart-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:5px 0;
+/* TOAST */
+.toast{
+  position:fixed;bottom:20px;left:50%;
+  transform:translateX(-50%) translateY(14px);
+  background:var(--g1);color:#fff;
+  padding:10px 20px;border-radius:28px;
+  font-size:14px;font-weight:800;
+  opacity:0;transition:all .28s;
+  z-index:9999;white-space:nowrap;pointer-events:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.22);
 }
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-.total{
-    margin-top:10px;
-    font-weight:bold;
+/* ── RESPONSIVE ── */
+@media(max-width:480px){
+  .brand h1{font-size:14px;}
+  .brand p{display:none;}
+  .container{grid-template-columns:repeat(2,1fr);gap:10px;padding:10px 10px 36px;}
+  .card-img{height:140px;}
 }
-
-input,textarea,select{
-    width:100%;
-    margin-top:6px;
-    padding:8px;
-    border-radius:6px;
-    border:1px solid #ccc;
+@media(min-width:640px){
+  .container{grid-template-columns:repeat(3,1fr);}
+  .card-img{height:170px;}
 }
-
-.send{
-    margin-top:10px;
-    width:100%;
-    padding:10px;
-    background:#1b5e20;
-    color:white;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
+@media(min-width:860px){
+  .container{grid-template-columns:repeat(4,1fr);}
+  .card-img{height:175px;}
 }
-
-.warning{
-    font-size:15px;
-    color:red;
-    margin-top:8px;
-}
-
-/* FLOAT BUTTONS */
-.float-contact{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:#ffffff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    z-index:999;
-}
-
-.telegram{
-    left:auto;
-    right:90px;
-    box-shadow:0 5px 15px rgba(0,0,0,.3);
-}
-
-.telegram svg{
-    fill:black;
-}
-
 </style>
 </head>
-
 <body>
+<div class="wrap">
 
 <header>
-
-<div class="location">
-Namangan viloyati, To‘raqo‘rg‘on tumani, Markaziy dehqon bozori
-</div>
-
-<input id="search" placeholder="🔍 Qidirish...">
-
+  <div class="hinner">
+    <div class="htop">
+      <div class="brand">
+        <div class="brand-icon">🏪</div>
+        <div>
+          <h1>Markaziy Bozor</h1>
+          <p>To'raqo'rg'on · Namangan</p>
+        </div>
+      </div>
+      <div class="hactions">
+        <a href="tel:+998998634115" class="hbtn" title="Qo'ng'iroq">📞</a>
+        <a href="https://t.me/TMarkaziy_Bozor" class="hbtn" target="_blank" title="Telegram">
+          <svg viewBox="0 0 24 24"><path d="M9.04 15.47L8.9 19.2c.4 0 .58-.18.8-.4l1.9-1.8 3.94 2.9c.72.4 1.23.2 1.42-.67l2.6-12.2c.27-1.24-.45-1.73-1.13-1.48L3.4 9.3c-1.2.47-1.18 1.15-.2 1.45l4.6 1.43L18.5 7.3c.52-.32.99-.14.6.2"/></svg>
+        </a>
+        <div class="hbtn" onclick="openCart()" title="Savat" style="cursor:pointer;">
+          🛒
+          <div class="cart-badge" id="cart-badge">0</div>
+        </div>
+      </div>
+    </div>
+    <div class="sbox">
+      <span class="sicon">🔍</span>
+      <input id="search" type="search" placeholder="Mahsulot qidirish...">
+    </div>
+  </div>
 </header>
 
-<div class="container">
+<div class="locbar">📍 Namangan viloyati, To'raqo'rg'on tumani, Markaziy dehqon bozori</div>
 
-<div class="card">
-<img src="zateya5.jpg">
-<div class="info">
-<h3>Zateya 5L</h3>
-<p class="price">130 000 so‘m</p>
-<button class="btn" onclick="add('Zateya 5L',130000)">+ Savat</button>
-</div>
+<div class="hero">
+  🌿 Yangi va sifatli mahsulotlar &nbsp;·&nbsp; <span>Bugun yetkazib beramiz</span> &nbsp;·&nbsp; 📦 Buyurtma Telegram orqali
 </div>
 
-<div class="card">
-<img src="shakar.jpg">
-<div class="info">
-<h3>Shakar</h3>
-<p class="price">13 000 so‘m</p>
-<button class="btn" onclick="add('Shakar',13000)">+ Savat</button>
-</div>
+<div class="sec-head">
+  <h2>Mahsulotlar</h2>
+  <div class="sec-line"></div>
+  <span class="sec-pill" id="sec-pill">4 ta</span>
 </div>
 
-<div class="card">
-<img src="oq qand.jpg">
-<div class="info">
-<h3>Oq qand</h3>
-<p class="price">15 000 so‘m</p>
-<button class="btn" onclick="add('Shakar',15000)">+ Savat</button>
-</div>
-</div>
+<div class="container" id="products"></div>
 
-<div class="card">
-<img src="zateya1.jpg">
-<div class="info">
-<h3>Zateya 1 L</h3>
-<p class="price">26 000 so‘m</p>
-<button class="btn" onclick="add('Shakar',26000)">+ Savat</button>
-</div>
-</div>
+<div class="foot">© 2026 Markaziy Bozor — To'raqo'rg'on &nbsp;·&nbsp; +998 99 863 41 15</div>
 
 </div>
 
-<!-- CART BUTTON -->
-<div class="cart-btn" onclick="openCart()">🛒</div>
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="bgClose(event)">
+  <div class="modal">
+    <div class="mhead">
+      <h3>🛒 Mening savatim</h3>
+      <button class="mclose" onclick="closeCart()">✕</button>
+    </div>
+    <div class="mbody">
+      <div id="cart-list"></div>
+      <div class="total-box" id="total-box" style="display:none">
+        <span class="tlabel">Jami to'lov:</span>
+        <span class="tval" id="tval">0 so'm</span>
+      </div>
 
-<div class="overlay" id="overlay">
-<div class="modal">
+      <div class="fsep"><hr><span>📋 Buyurtma ma'lumotlari</span><hr></div>
 
-<span class="close" onclick="closeCart()">✖</span>
+      <div class="field">
+        <label>Ismingiz *</label>
+        <input id="f-name" placeholder="To'liq ismingiz">
+        <div class="errmsg" id="e-name">Ism kiritilmagan</div>
+      </div>
+      <div class="field">
+        <label>Telefon *</label>
+        <input id="f-phone" placeholder="+998 xx xxx xx xx" type="tel">
+        <div class="errmsg" id="e-phone">Telefon kiritilmagan</div>
+      </div>
+      <div class="field">
+        <label>Manzil / Mo'ljal</label>
+        <textarea id="f-addr" placeholder="Ko'cha, uy raqami yoki orientir..." rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label>Yetkazish usuli</label>
+        <select id="f-del">
+          <option value="Yetkazish">🚚 Yetkazib berish</option>
+          <option value="Olib ketish">🏃 O'zim olib ketaman</option>
+        </select>
+      </div>
 
-<h3>🛒 Savat</h3>
+      <div class="warnbox">
+        ⚠️ To'lov <strong>oldindan</strong> amalga oshiriladi. Xizmat haqqi <strong>10%</strong>. Mahsulot online taksi orqali yetkaziladi — yo'l haqi mijoz tomonidan to'lanadi.
+      </div>
 
-<div id="cart"></div>
-
-<div class="total" id="total">Jami: 0 so‘m</div>
-
-<hr>
-
-<input id="name" placeholder="Ism">
-<input id="phone" placeholder="Telefon">
-<textarea id="address" placeholder="Mo‘ljal"></textarea>
-
-<select id="delivery">
-<option>Yetkazish</option>
-<option>Olib ketish</option>
-</select>
-
-<p class="warning">
-⚠ To‘lov oldindan. 10% xizmat haqqi. Mahsulot online taksi orqali yetkazib beriladi, yo'l haqqi mijoz tomonidan qoplanadi.
-</p>
-
-<button class="send" onclick="send()">YUBORISH</button>
-
+      <button class="sendbtn" id="sendbtn" onclick="send()">📨 Buyurtma yuborish</button>
+    </div>
+  </div>
 </div>
-</div>
 
-<a href="tel:+998998634115" class="float-contact">📞</a>
-
-<a href="https://t.me/TMarkaziy_Bozor" class="float-contact telegram" target="_blank">
-<svg width="28" height="28" viewBox="0 0 24 24">
-<path d="M9.04 15.47L8.9 19.2c.4 0 .58-.18.8-.4l1.9-1.8 3.94 2.9c.72.4 1.23.2 1.42-.67l2.6-12.2c.27-1.24-.45-1.73-1.13-1.48L3.4 9.3c-1.2.47-1.18 1.15-.2 1.45l4.6 1.43L18.5 7.3c.52-.32.99-.14.6.2"/>
-</svg>
-</a>
+<div class="toast" id="toast"></div>
 
 <script>
+const P=[
+  {id:'z5',name:'Zateya 5L', price:130000,img:'zateya5.jpg'},
+  {id:'sh',name:'Shakar',    price:13000, img:'shakar.jpg'},
+  {id:'oq',name:'Oq qand',   price:15000, img:'oq qand.jpg'},
+  {id:'z1',name:'Zateya 1L', price:26000, img:'zateya1.jpg'},
+];
 
-let cart=[];
+let cart={};
+const fmt=n=>n.toLocaleString('uz-UZ');
 
-/* ➕ ADD */
-function add(name,price){
-let item=cart.find(i=>i.name===name);
-
-if(item){
-item.qty++;
-}else{
-cart.push({name,price,qty:1});
+function renderP(list){
+  const c=document.getElementById('products');
+  const pill=document.getElementById('sec-pill');
+  if(pill) pill.textContent=list.length+' ta';
+  if(!list.length){c.innerHTML='<div class="no-results">🔍 Mahsulot topilmadi</div>';return;}
+  c.innerHTML=list.map(p=>`
+    <div class="card">
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy"
+             onerror="this.parentElement.style.background='#e8f5e9'">
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="price-row">
+          <span class="price">${fmt(p.price)}</span>
+          <span class="punit">so'm</span>
+        </div>
+        <div class="bwrap">
+          <button class="btn" id="btn-${p.id}" onclick="add('${p.id}')">
+            <span>+</span> Savat
+          </button>
+          <div class="cbadge" id="cb-${p.id}"></div>
+        </div>
+        <div class="fb" id="fb-${p.id}"></div>
+      </div>
+    </div>
+  `).join('');
+  syncBadges();
 }
 
-render();
-}
+renderP(P);
 
-/* ➖ MINUS */
-function minus(name){
-
-let item=cart.find(i=>i.name===name);
-
-if(!item) return;
-
-item.qty--;
-
-if(item.qty<=0){
-cart=cart.filter(i=>i.name!==name);
-}
-
-render();
-}
-
-/* RENDER */
-function render(){
-
-let box=document.getElementById("cart");
-box.innerHTML="";
-
-let total=0;
-
-cart.forEach(i=>{
-total+=i.price*i.qty;
-
-box.innerHTML+=`
-<div class="cart-item">
-<span>${i.name} x${i.qty}</span>
-
-<div>
-<button onclick="minus('${i.name}')">➖</button>
-<button onclick="add('${i.name}',${i.price})">➕</button>
-</div>
-
-</div>
-`;
+document.getElementById('search').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  renderP(q?P.filter(p=>p.name.toLowerCase().includes(q)):P);
 });
 
-document.getElementById("total").innerText="Jami: "+total.toLocaleString()+" so‘m";
+function add(id){cart[id]=(cart[id]||0)+1;sync();showFb(id);}
+function minus(id){if(!cart[id])return;cart[id]--;if(cart[id]<=0)delete cart[id];sync();}
+function remove(id){delete cart[id];sync();}
+
+function sync(){
+  syncBadges();
+  syncCartBtn();
+  if(document.getElementById('overlay').style.display==='flex') renderCart();
 }
 
-function openCart(){
-document.getElementById("overlay").style.display="flex";
+function syncCartBtn(){
+  const tot=Object.values(cart).reduce((s,q)=>s+q,0);
+  const b=document.getElementById('cart-badge');
+  b.style.display=tot>0?'flex':'none';
+  b.textContent=tot>99?'99+':tot;
 }
 
-function closeCart(){
-document.getElementById("overlay").style.display="none";
+function syncBadges(){
+  P.forEach(p=>{
+    const b=document.getElementById('cb-'+p.id);
+    const btn=document.getElementById('btn-'+p.id);
+    if(!b)return;
+    const q=cart[p.id]||0;
+    if(q>0){
+      b.style.display='flex';b.textContent=q;
+      if(btn){btn.innerHTML=`<span>✓</span> Savat (${q})`;btn.classList.add('added');}
+    }else{
+      b.style.display='none';
+      if(btn){btn.innerHTML=`<span>+</span> Savat`;btn.classList.remove('added');}
+    }
+  });
 }
+
+function renderCart(){
+  const box=document.getElementById('cart-list');
+  const tb=document.getElementById('total-box');
+  const ids=Object.keys(cart);
+  if(!ids.length){
+    box.innerHTML='<div class="empty">🛒 Savat bo\'sh</div>';
+    tb.style.display='none';
+    document.getElementById('sendbtn').disabled=true;
+    return;
+  }
+  document.getElementById('sendbtn').disabled=false;
+  tb.style.display='flex';
+  let total=0;
+  box.innerHTML=ids.map(id=>{
+    const p=P.find(x=>x.id===id);if(!p)return'';
+    const q=cart[id],s=p.price*q;total+=s;
+    return`<div class="ci">
+      <div class="ci-name">${p.name}<br><span class="ci-sub">${fmt(p.price)} × ${q}</span></div>
+      <div class="ci-price">${fmt(s)} so'm</div>
+      <div class="qctrl">
+        <button class="qb" onclick="minus('${id}')">−</button>
+        <span class="qn">${q}</span>
+        <button class="qb" onclick="add('${id}')">+</button>
+      </div>
+      <button class="delbtn" onclick="remove('${id}')">🗑</button>
+    </div>`;
+  }).join('');
+  document.getElementById('tval').textContent=fmt(total)+' so\'m';
+}
+
+function openCart(){renderCart();document.getElementById('overlay').style.display='flex';}
+function closeCart(){document.getElementById('overlay').style.display='none';}
+function bgClose(e){if(e.target===document.getElementById('overlay'))closeCart();}
 
 function send(){
-
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let address=document.getElementById("address").value;
-let delivery=document.getElementById("delivery").value;
-
-let msg=`🛒 Buyurtma:
-Ism: ${name}
-Tel: ${phone}
-Mo‘ljal: ${address}
-Yetkazish: ${delivery}
-Mahsulotlar: ${cart.map(i=>i.name+" x"+i.qty).join(", ")}`;
-
-window.open("https://t.me/TMarkaziy_Bozor?text="+encodeURIComponent(msg));
-
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const addr=document.getElementById('f-addr').value.trim();
+  const del=document.getElementById('f-del').value;
+  let ok=true;
+  const se=(fid,eid,bad)=>{document.getElementById(fid).classList.toggle('err',bad);document.getElementById(eid).style.display=bad?'block':'none';};
+  se('f-name','e-name',!name); if(!name)ok=false;
+  se('f-phone','e-phone',!phone); if(!phone)ok=false;
+  if(!Object.keys(cart).length){showToast('❗ Avval mahsulot tanlang!');return;}
+  if(!ok){showToast('❗ Majburiy maydonlarni to\'ldiring');return;}
+  const items=Object.keys(cart).map(id=>{const p=P.find(x=>x.id===id);return p?`${p.name} x${cart[id]}`:''}).filter(Boolean).join(', ');
+  const total=Object.keys(cart).reduce((s,id)=>{const p=P.find(x=>x.id===id);return s+(p?p.price*cart[id]:0);},0);
+  const msg=`🛒 Yangi buyurtma!\n\n👤 Ism: ${name}\n📞 Tel: ${phone}\n📍 Manzil: ${addr||'—'}\n🚚 Yetkazish: ${del}\n\n📦 Mahsulotlar:\n${items}\n\n💰 Jami: ${fmt(total)} so'm`;
+  window.open('https://t.me/TMarkaziy_Bozor?text='+encodeURIComponent(msg));
+  cart={};sync();closeCart();
+  document.getElementById('f-name').value='';
+  document.getElementById('f-phone').value='';
+  document.getElementById('f-addr').value='';
+  showToast('✅ Buyurtma yuborildi!');
 }
 
-</script>
+function showFb(id){
+  const fb=document.getElementById('fb-'+id);if(!fb)return;
+  fb.textContent='✓ Savatga qo\'shildi';
+  clearTimeout(fb._t);fb._t=setTimeout(()=>{fb.textContent='';},1600);
+}
 
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+syncCartBtn();
+</script>
 </body>
 </html>
