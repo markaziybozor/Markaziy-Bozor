@@ -164,21 +164,22 @@ header{
 .card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(15,76,42,.16);}
 
 /* FIXED IMAGE — always same size, never distorts */
-.card-img{
-  width:100%;
-  height:250px;
-  overflow:hidden;
-  flex-shrink:0;
-  background:#e8f5e9;
-  position:relative;
+/* FIXED IMAGE — har qanday qurilmada 1350x1080 nisbatida saqlanadi */
+.card-img {
+  width: 100%;
+  aspect-ratio: 1350 / 1080; /* Rasm nisbati o'zgarmasligi uchun */
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e8f5e9;
+  position: relative;
 }
-.card-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  display:block;
-  transition:transform .35s;
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Rasm o'lchamini buzmasdan to'ldiradi */
+  object-position: center;
+  display: block;
+  transition: transform .35s;
 }
 .card:hover .card-img img{transform:scale(1.05);}
 
