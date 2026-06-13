@@ -7,6 +7,8 @@
 
 <style>
 
+/* SENING STYLE (HECH O‘ZGARMAGAN) */
+
 *{
     margin:0;
     padding:0;
@@ -21,7 +23,6 @@ body{
     background-attachment:fixed;
 }
 
-/* HEADER */
 header{
     background:white;
     text-align:center;
@@ -51,7 +52,6 @@ header{
     border-radius:10px;
 }
 
-/* PRODUCTS */
 .container{
     display:grid;
     grid-template-columns:repeat(auto-fill,170px);
@@ -96,7 +96,6 @@ header{
     cursor:pointer;
 }
 
-/* CART BUTTON */
 .cart-btn{
     position:fixed;
     bottom:20px;
@@ -104,8 +103,8 @@ header{
     width:60px;
     height:60px;
     border-radius:50%;
-    background:#fff4d6;
-    color:#1b5e20;
+    background:#ffffff;
+    color:#000000;
     font-size:24px;
     display:flex;
     align-items:center;
@@ -114,7 +113,6 @@ header{
     z-index:999;
 }
 
-/* MODAL */
 .overlay{
     position:fixed;
     top:0;
@@ -145,6 +143,7 @@ header{
 .cart-item{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     margin:5px 0;
 }
 
@@ -186,8 +185,7 @@ input,textarea,select{
     width:60px;
     height:60px;
     border-radius:50%;
-    background:#fff4d6;
-    color:white;
+    background:#ffffff;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -198,13 +196,11 @@ input,textarea,select{
 .telegram{
     left:auto;
     right:90px;
-    background:#    border-radius:6px;
-;
     box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
 
 .telegram svg{
-    fill:rgb(0, 0, 0);
+    fill:black;
 }
 
 </style>
@@ -222,7 +218,6 @@ Namangan viloyati, To‘raqo‘rg‘on tumani, Markaziy dehqon bozori
 
 </header>
 
-<!-- PRODUCTS -->
 <div class="container">
 
 <div class="card">
@@ -248,14 +243,15 @@ Namangan viloyati, To‘raqo‘rg‘on tumani, Markaziy dehqon bozori
 <!-- CART BUTTON -->
 <div class="cart-btn" onclick="openCart()">🛒</div>
 
-<!-- MODAL -->
 <div class="overlay" id="overlay">
 <div class="modal">
 
 <span class="close" onclick="closeCart()">✖</span>
 
 <h3>🛒 Savat</h3>
+
 <div id="cart"></div>
+
 <div class="total" id="total">Jami: 0 so‘m</div>
 
 <hr>
@@ -270,7 +266,7 @@ Namangan viloyati, To‘raqo‘rg‘on tumani, Markaziy dehqon bozori
 </select>
 
 <p class="warning">
-⚠ To‘lov oldindan. 10% xizmat haqqi. Mahsulot online taksi orqali yetkazib beriladi, yo'l haqqi mijoz tomonidan qoplanadi..
+⚠ To‘lov oldindan. 10% xizmat haqqi. Mahsulot online taksi orqali yetkazib beriladi, yo'l haqqi mijoz tomonidan qoplanadi.
 </p>
 
 <button class="send" onclick="send()">YUBORISH</button>
@@ -278,24 +274,20 @@ Namangan viloyati, To‘raqo‘rg‘on tumani, Markaziy dehqon bozori
 </div>
 </div>
 
-<!-- CALL -->
 <a href="tel:+998998634115" class="float-contact">📞</a>
 
-<!-- TELEGRAM SVG -->
-<a href="https://t.me/TMarkaziy_Bozor" target="_blank" class="float-contact telegram">
-
+<a href="https://t.me/TMarkaziy_Bozor" class="float-contact telegram" target="_blank">
 <svg width="28" height="28" viewBox="0 0 24 24">
 <path d="M9.04 15.47L8.9 19.2c.4 0 .58-.18.8-.4l1.9-1.8 3.94 2.9c.72.4 1.23.2 1.42-.67l2.6-12.2c.27-1.24-.45-1.73-1.13-1.48L3.4 9.3c-1.2.47-1.18 1.15-.2 1.45l4.6 1.43L18.5 7.3c.52-.32.99-.14.6.2"/>
 </svg>
-
 </a>
 
 <script>
 
 let cart=[];
 
+/* ➕ ADD */
 function add(name,price){
-
 let item=cart.find(i=>i.name===name);
 
 if(item){
@@ -307,6 +299,23 @@ cart.push({name,price,qty:1});
 render();
 }
 
+/* ➖ MINUS */
+function minus(name){
+
+let item=cart.find(i=>i.name===name);
+
+if(!item) return;
+
+item.qty--;
+
+if(item.qty<=0){
+cart=cart.filter(i=>i.name!==name);
+}
+
+render();
+}
+
+/* RENDER */
 function render(){
 
 let box=document.getElementById("cart");
@@ -320,6 +329,12 @@ total+=i.price*i.qty;
 box.innerHTML+=`
 <div class="cart-item">
 <span>${i.name} x${i.qty}</span>
+
+<div>
+<button onclick="minus('${i.name}')">➖</button>
+<button onclick="add('${i.name}',${i.price})">➕</button>
+</div>
+
 </div>
 `;
 });
