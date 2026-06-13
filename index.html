@@ -165,18 +165,23 @@ header{
 
 /* FIXED IMAGE — always same size, never distorts */
 /* FIXED IMAGE — har qanday qurilmada 1350x1080 nisbatida saqlanadi */
+/* FIXED IMAGE — Rasmning barcha qismi ko'rinishi uchun */
 .card-img {
   width: 100%;
-  aspect-ratio: 1350 / 1080; /* Rasm nisbati o'zgarmasligi uchun */
+  aspect-ratio: 1350 / 1080; /* Proporsiyani saqlash */
   overflow: hidden;
   flex-shrink: 0;
-  background: #e8f5e9;
+  background: #f7f5f0; /* Orqa fonni oq yoki kulrangroq qilish mumkin */
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .card-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Rasm o'lchamini buzmasdan to'ldiradi */
+  object-fit: contain; /* ASOSIY O'ZGARISH: Rasm kesilmaydi, to'liq sig'diriladi */
   object-position: center;
   display: block;
   transition: transform .35s;
