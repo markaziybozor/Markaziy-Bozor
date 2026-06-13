@@ -18,7 +18,6 @@ body{
     font-family:Arial,sans-serif;
 
     background-image: url("background.jpg");
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -36,13 +35,13 @@ header{
     box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
-/* LOCATION TEXT */
+/* LOCATION */
 .location{
     background:#fff4d6;
     color:#1b5e20;
     font-weight:600;
-    font-size:25px;
-    padding:5px 5px;
+    font-size:18px;
+    padding:10px;
     border-radius:10px;
     max-width:700px;
     margin:0 auto 10px auto;
@@ -73,7 +72,6 @@ header{
 .card{
     width:170px;
     height:330px;
-    flex-shrink:0;
     background:white;
     border-radius:12px;
     overflow:hidden;
@@ -103,13 +101,11 @@ header{
     flex:1;
 }
 
-/* TITLE */
 .info h2{
     font-size:16px;
     margin-bottom:5px;
 }
 
-/* DESCRIPTION */
 .desc{
     font-size:14px;
     color:#555;
@@ -120,7 +116,6 @@ header{
     overflow:hidden;
 }
 
-/* PRICE */
 .price{
     margin-top:auto;
     font-size:16px;
@@ -128,16 +123,16 @@ header{
     color:green;
 }
 
-/* MOBILE FIX */
+/* MOBILE */
 @media(max-width:480px){
     .card{
         height:320px;
     }
 }
 
-/* ========================= */
-/* FLOATING BUTTONS */
-/* ========================= */
+/* ===================== */
+/* FLOAT BUTTONS */
+/* ===================== */
 
 .float-btn{
     position:fixed;
@@ -147,30 +142,35 @@ header{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:22px;
-    color:white;
     text-decoration:none;
     box-shadow:0 5px 15px rgba(0,0,0,0.3);
     z-index:999;
     transition:0.2s;
+    background:#fff4d6;
 }
 
 .float-btn:hover{
     transform:scale(1.1);
 }
 
-/* CALL BUTTON */
+/* CALL */
 .call{
     bottom:20px;
     left:20px;
-    background:#fff4d6;
+    font-size:24px;
+    color: #000000;
 }
 
-/* TELEGRAM BUTTON */
+/* TELEGRAM */
 .telegram{
     bottom:20px;
     right:20px;
     background:#fff4d6;
+}
+
+/* Telegram SVG color */
+.telegram svg{
+    fill:#000;
 }
 
 </style>
@@ -180,69 +180,68 @@ header{
 
 <header>
 
-    <!-- 📍 LOCATION -->
     <div class="location">
         Namangan viloyati, To‘raqo‘rg‘on tumani,
         Markaziy dehqon bozori
     </div>
 
-    <!-- 🔍 SEARCH -->
     <input
     type="text"
     id="search"
-    placeholder="🔍 Mahsulot qidirish... (masalan: kartoshka)">
+    placeholder="🔍 Mahsulot qidirish...">
 
 </header>
 
-<!-- PRODUCTS -->
 <div class="container" id="productList">
 
     <div class="card" data-name="Zateya 5 L">
-        <img src="zateya5.jpg" alt="">
+        <img src="zateya5.jpg">
         <div class="info">
             <h2>Zateya 5 L</h2>
-            <p class="desc">Rossiyadan keltirilgan sifatli semichka yog‘i.</p>
+            <p class="desc">Rossiyadan keltirilgan sifatli yog‘.</p>
             <p class="price">130 000 so‘m</p>
         </div>
     </div>
 
     <div class="card" data-name="Zateya 1 L">
-        <img src="zateya1.jpg" alt="">
+        <img src="zateya1.jpg">
         <div class="info">
             <h2>Zateya 1 L</h2>
-            <p class="desc">Rossiyadan keltirilgan sifatli semichka yog‘i.</p>
+            <p class="desc">Rossiyadan keltirilgan sifatli yog‘.</p>
             <p class="price">26 000 so‘m</p>
         </div>
     </div>
 
     <div class="card" data-name="Shakar">
-        <img src="shakar.jpg" alt="">
+        <img src="shakar.jpg">
         <div class="info">
             <h2>Shakar</h2>
-            <p class="desc">Toza va sifatli shakar mahsuloti.</p>
+            <p class="desc">Toza va sifatli shakar.</p>
             <p class="price">14 000 so‘m</p>
         </div>
     </div>
 
     <div class="card" data-name="Oq qand">
-        <img src="oq qand.jpg" alt="">
+        <img src="oq qand.jpg">
         <div class="info">
             <h2>Oq qand</h2>
-            <p class="desc">Toza va sifatli oq qand mahsuloti.</p>
+            <p class="desc">Sifatli oq qand mahsuloti.</p>
             <p class="price">15 000 so‘m</p>
         </div>
     </div>
 
 </div>
 
-<!-- FLOATING BUTTONS -->
-
+<!-- CALL BUTTON -->
 <a href="tel:+998901234567" class="float-btn call">
     📞
 </a>
 
+<!-- TELEGRAM BUTTON -->
 <a href="https://t.me/USERNAME" target="_blank" class="float-btn telegram">
-    ⌲
+    <svg width="26" height="26" viewBox="0 0 24 24">
+        <path d="M9.04 15.47L8.9 19.2c.4 0 .58-.18.8-.4l1.9-1.8 3.94 2.9c.72.4 1.23.2 1.42-.67l2.6-12.2c.27-1.24-.45-1.73-1.13-1.48L3.4 9.3c-1.2.47-1.18 1.15-.2 1.45l4.6 1.43L18.5 7.3c.52-.32.99-.14.6.2"/>
+    </svg>
 </a>
 
 <script>
@@ -263,11 +262,8 @@ search.addEventListener("input", function(){
         let name =
         product.dataset.name.toLowerCase();
 
-        if(name.includes(value)){
-            product.style.display="flex";
-        }else{
-            product.style.display="none";
-        }
+        product.style.display =
+        name.includes(value) ? "flex" : "none";
 
     });
 
